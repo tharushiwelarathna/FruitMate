@@ -3,7 +3,7 @@ import 'package:fruitmate_app/controller/home_controller.dart';
 import 'package:fruitmate_app/util/app_colors.dart';
 import 'package:fruitmate_app/util/app_images.dart';
 import 'package:fruitmate_app/view/login/login.dart';
-import 'package:fruitmate_app/view/logup/logup.dart';
+import 'package:fruitmate_app/view/register/register.dart';
 import 'package:get/get.dart';
 
 class Home extends StatelessWidget {
