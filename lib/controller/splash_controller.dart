@@ -1,7 +1,8 @@
 import 'dart:async';
 
-import 'package:fruitmate_app/view/home/home.dart';
 import 'package:get/get.dart';
+
+import '../view/login/login.dart';
 
 class SplashController extends GetxController {
   @override
@@ -12,7 +13,7 @@ class SplashController extends GetxController {
 
   void navigateToNextPage() {
     Timer(const Duration(seconds: 2), () {
-      Get.offAll(const Home());
+      Get.offAll(const Login());
     });
   }
 }

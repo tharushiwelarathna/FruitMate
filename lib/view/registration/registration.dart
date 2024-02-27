@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:fruitmate_app/controller/logup_controller.dart';
+import 'package:fruitmate_app/controller/registration_controller.dart';
 import 'package:fruitmate_app/util/app_colors.dart';
 import 'package:fruitmate_app/util/app_images.dart';
 import 'package:fruitmate_app/view/login/login.dart';
 import 'package:get/get.dart';
 
-class Logup extends StatelessWidget {
-  const Logup({super.key});
+class Registration extends StatelessWidget {
+  const Registration({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +14,8 @@ class Logup extends StatelessWidget {
       color: AppColors.white,
       child: SafeArea(
         child: Scaffold(
-          body: GetBuilder<LogupController>(
-            init: LogupController(),
+          body: GetBuilder<RegistrationController>(
+            init: RegistrationController(),
             builder: (controller) {
               return Center(
                 child: Padding(
