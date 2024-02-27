@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:fruitmate_app/controller/freshness_identification_controller.dart';
+import 'package:fruitmate_app/view/freshnessIdentification/more_details.dart';
 import 'package:get/get.dart';
 
 import '../../util/app_colors.dart';
@@ -21,7 +22,7 @@ class FreshnessIdentification extends StatelessWidget {
           text: 'Freshness Identification',
           size: 24.0,
           color: AppColors.black,
-          weight: FontWeight.w400,
+          weight: FontWeight.w600,
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
@@ -61,30 +62,34 @@ class FreshnessIdentification extends StatelessWidget {
                     weight: FontWeight.w400,
                   ),
                   const SizedBox(height: 40),
-                  Container(
-                    width: width * 0.7,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: AppColors.green,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 16, horizontal: 20),
-                      child: SizedBox(
-                        width: width,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            AppWidgets.regularText(
-                              text: "More Details",
-                              size: 22,
-                              color: AppColors.white,
-                              weight: FontWeight.w600,
-                            ),
-                            const SizedBox(width: 10),
-                            Icon(Icons.arrow_forward_ios_rounded,
-                                color: AppColors.white, size: 20)
-                          ],
+                  GestureDetector(
+                    onTap: () =>
+                        Get.to(() => MoreDetails(imagePath: imagePath)),
+                    child: Container(
+                      width: width * 0.7,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: AppColors.green,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 16, horizontal: 20),
+                        child: SizedBox(
+                          width: width,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              AppWidgets.regularText(
+                                text: "More Details",
+                                size: 22,
+                                color: AppColors.white,
+                                weight: FontWeight.w600,
+                              ),
+                              const SizedBox(width: 10),
+                              Icon(Icons.arrow_forward_ios_rounded,
+                                  color: AppColors.white, size: 20)
+                            ],
+                          ),
                         ),
                       ),
                     ),
