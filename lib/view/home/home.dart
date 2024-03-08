@@ -34,45 +34,55 @@ class Home extends StatelessWidget {
                       scale: 1.5,
                     ),
                     AppWidgets.regularText(
-                      text: 'Upload a Clear Picture of Fruit\'s Image',
-                      size: 22.0,
-                      color: AppColors.black,
-                      weight: FontWeight.w600,
-                    ),
+                        text: 'Upload a Clear Picture of Fruit\'s Image',
+                        size: 22.0,
+                        color: AppColors.black,
+                        weight: FontWeight.w600,
+                        alignment: TextAlign.center),
                     const SizedBox(height: 40),
-                    ElevatedButton(
-                        onPressed: () => controller.uploadImage(true),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.signinbtn,
-                        ),
-                        child: SizedBox(
-                          child: Center(
-                            child: AppWidgets.regularText(
-                              text: 'Take Photo from Camera',
-                              size: 18.0,
-                              color: AppColors.white,
-                              weight: FontWeight.w400,
-                            ),
+                    controller.loader
+                        ? Center(
+                            child: CircularProgressIndicator(
+                                color: AppColors.signinbtn),
+                          )
+                        : Column(
+                            children: [
+                              ElevatedButton(
+                                  onPressed: () => controller.uploadImage(true),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: AppColors.signinbtn,
+                                  ),
+                                  child: SizedBox(
+                                    child: Center(
+                                      child: AppWidgets.regularText(
+                                          text: 'Take Photo from Camera',
+                                          size: 18.0,
+                                          color: AppColors.white,
+                                          weight: FontWeight.w400,
+                                          alignment: TextAlign.center),
+                                    ),
+                                    width: 200,
+                                  )),
+                              const SizedBox(height: 10),
+                              ElevatedButton(
+                                  onPressed: () =>
+                                      controller.uploadImage(false),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: AppColors.signinbtn,
+                                  ),
+                                  child: SizedBox(
+                                    child: Center(
+                                      child: AppWidgets.regularText(
+                                          text: 'Upload Image from Gallery',
+                                          size: 18.0,
+                                          color: AppColors.white,
+                                          weight: FontWeight.w400,
+                                          alignment: TextAlign.center),
+                                    ),
+                                    width: 200,
+                                  )),
+                            ],
                           ),
-                          width: 200,
-                        )),
-                    const SizedBox(height: 10),
-                    ElevatedButton(
-                        onPressed: () => controller.uploadImage(false),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.signinbtn,
-                        ),
-                        child: SizedBox(
-                          child: Center(
-                            child: AppWidgets.regularText(
-                              text: 'Upload Image from Gallery',
-                              size: 18.0,
-                              color: AppColors.white,
-                              weight: FontWeight.w400,
-                            ),
-                          ),
-                          width: 200,
-                        )),
                   ],
                 ),
               ),

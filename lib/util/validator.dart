@@ -1,5 +1,13 @@
 import 'package:get/get.dart';
 
+String? validateUsername(String? username) {
+  if (username == null || username.isEmpty) {
+    return 'Please enter a username';
+  } else {
+    return null;
+  }
+}
+
 String? validateEmail(String? email) {
   if (email == null || email.isEmpty) {
     return 'Please enter a email';

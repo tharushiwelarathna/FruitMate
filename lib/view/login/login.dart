@@ -11,7 +11,8 @@ import '../../util/app_widgets.dart';
 import '../../util/validator.dart';
 
 class Login extends StatelessWidget {
-  const Login({super.key});
+  Login({super.key});
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,17 @@ class Login extends StatelessWidget {
                 child: Column(
                   children: [
                     Stack(
-                      children: [Center(child: Image.asset(AppImages.appIcon))],
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: height * 0.05,
+                          ),
+                          child: Image.asset(
+                            AppImages.appIcon,
+                            scale: 1.5,
+                          ),
+                        )
+                      ],
                     ),
                     Expanded(
                       child: Padding(
@@ -37,7 +48,7 @@ class Login extends StatelessWidget {
                         child: SingleChildScrollView(
                             child: Form(
                           autovalidateMode: AutovalidateMode.onUserInteraction,
-                          key: controller.formKey,
+                          key: formKey,
                           child: Column(
                             children: [
                               textFiledView(
@@ -113,7 +124,7 @@ class Login extends StatelessWidget {
                                             padding:
                                                 const EdgeInsets.symmetric(),
                                             child: AppWidgets.regularText(
-                                              text: "Login",
+                                              text: "Sign In",
                                               size: 22,
                                               color: AppColors.white,
                                               weight: FontWeight.w600,

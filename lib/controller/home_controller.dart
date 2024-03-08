@@ -7,10 +7,13 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:path/path.dart' as p;
 
 import '../util/app_widgets.dart';
+import '../util/server.dart';
 import '../view/freshnessIdentification/freshness_identification.dart';
 
 class HomeController extends GetxController {
   String imagePath = "";
+  bool loader = false;
+  Server server = Server();
 
   Future<void> uploadImage(bool isCamera) async {
     if (await Permission.camera.isGranted) {
@@ -62,12 +65,7 @@ class HomeController extends GetxController {
         imageCache.clear();
         imageCache.clearLiveImages();
         update();
-
-        Get.to(
-          () => FreshnessIdentification(
-            imagePath: imagePath,
-          ),
-        );
+        uploadImageServer(imagePath);
       }
     } catch (e) {
       AppWidgets.showSnackBar("An error occurred when taking a picture");
@@ -91,15 +89,32 @@ class HomeController extends GetxController {
         imageCache.clear();
         imageCache.clearLiveImages();
         update();
-
-        Get.to(
-          () => FreshnessIdentification(
-            imagePath: imagePath,
-          ),
-        );
+        uploadImageServer(imagePath);
       }
     } catch (e) {
       AppWidgets.showSnackBar("An error occurred when picking a file");
     }
+  }
+
+  uploadImageServer(path) async {
+    loader = true;
+    update();
+    await server
+        .multipartRequest("http://192.168.8.100:5000/detect", path)
+        .then((response) async {
+      if (response != null && response.statusCode == 200) {
+        loader = false;
+        update();
+        Get.to(
+          () => FreshnessIdentification(
+            imagePath: path,
+          ),
+        );
+      } else {
+        loader = false;
+        update();
+        AppWidgets.showSnackBar("An error occurred when uploading file");
+      }
+    });
   }
 }

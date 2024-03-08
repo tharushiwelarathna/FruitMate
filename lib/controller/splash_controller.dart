@@ -13,7 +13,7 @@ class SplashController extends GetxController {
 
   void navigateToNextPage() {
     Timer(const Duration(seconds: 2), () {
-      Get.offAll(const Login());
+      Get.offAll(Login());
     });
   }
 }
