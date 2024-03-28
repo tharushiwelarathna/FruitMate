@@ -41,9 +41,12 @@ class Home extends StatelessWidget {
                         alignment: TextAlign.center),
                     const SizedBox(height: 40),
                     controller.loader
-                        ? Center(
-                            child: CircularProgressIndicator(
-                                color: AppColors.signinbtn),
+                        ? Column(
+                            children: [
+                              const SizedBox(height: 40),
+                              CircularProgressIndicator(
+                                  color: AppColors.signinbtn),
+                            ],
                           )
                         : Column(
                             children: [

@@ -127,9 +127,9 @@ class HomeController extends GetxController {
           AppWidgets.showSnackBar("Image doesn't contain a fruit");
         } else {
           Get.to(
-            () => FreshnessIdentification(
-                annotatedImage: annotatedImage, boundingBoxes: boundingBoxes),
-          );
+              () => FreshnessIdentification(
+                  annotatedImage: annotatedImage, boundingBoxes: boundingBoxes),
+              arguments: [boundingBoxes[0][4]]);
         }
       } else {
         loader = false;
