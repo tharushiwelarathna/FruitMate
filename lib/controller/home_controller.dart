@@ -1,7 +1,10 @@
+import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:path/path.dart' as p;
@@ -105,11 +108,29 @@ class HomeController extends GetxController {
       if (response != null && response.statusCode == 200) {
         loader = false;
         update();
-        Get.to(
-          () => FreshnessIdentification(
-            imagePath: path,
-          ),
-        );
+
+        Map<String, dynamic> responseData = {};
+
+        if (response is http.Response) {
+          responseData = jsonDecode(response.body);
+        } else if (response is http.StreamedResponse) {
+          List<int> bodyBytes = await response.stream.toBytes();
+          responseData = jsonDecode(utf8.decode(bodyBytes));
+        }
+
+        Uint8List decodedImage = base64Decode(responseData['annotated_image']);
+
+        List<dynamic> boundingBoxes = responseData['bounding_boxes'];
+        Uint8List annotatedImage = decodedImage;
+
+        if (boundingBoxes.isEmpty) {
+          AppWidgets.showSnackBar("Image doesn't contain a fruit");
+        } else {
+          Get.to(
+            () => FreshnessIdentification(
+                annotatedImage: annotatedImage, boundingBoxes: boundingBoxes),
+          );
+        }
       } else {
         loader = false;
         update();

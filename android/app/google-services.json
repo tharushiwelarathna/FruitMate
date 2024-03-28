@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "536472439577",
+    "project_id": "fruitmate-db-b4a62",
+    "storage_bucket": "fruitmate-db-b4a62.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536472439577:android:3ca0c3b2ee99a377d71388",
+        "android_client_info": {
+          "package_name": "com.tharushinirmani.fruitmate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrbYoVkvYs1S9FxUwjEB15MrW4-LiNLwA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

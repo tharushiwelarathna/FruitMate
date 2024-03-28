@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,8 +8,10 @@ import '../../util/app_colors.dart';
 import '../../util/app_widgets.dart';
 
 class MoreDetails extends StatelessWidget {
-  final String imagePath;
-  const MoreDetails({super.key, required this.imagePath});
+  final Uint8List annotatedImage;
+  final List<dynamic> boundingBoxes;
+  const MoreDetails(
+      {super.key, required this.annotatedImage, required this.boundingBoxes});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,7 @@ class MoreDetails extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AppWidgets.regularText(
-                    text: "Mango",
+                    text: "${boundingBoxes[0][4]}",
                     size: 22,
                     color: AppColors.black,
                     weight: FontWeight.w600,
@@ -52,9 +54,9 @@ class MoreDetails extends StatelessWidget {
                       border: Border.all(color: Colors.grey),
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Image.file(
-                      File(imagePath),
-                      fit: BoxFit.cover,
+                    child: Image.memory(
+                      annotatedImage,
+                      fit: BoxFit.contain,
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -109,15 +111,7 @@ class MoreDetails extends StatelessWidget {
                                 ? Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.stretch,
-                                    children: [
-                                      AppWidgets.regularText(
-                                        text:
-                                            "Identified Freshness : Fresh\nAccuracy : 98.02%",
-                                        size: 20,
-                                        color: AppColors.black,
-                                        weight: FontWeight.w400,
-                                      ),
-                                    ],
+                                    children: [],
                                   )
                                 : controller.current == 1
                                     ? Column(
